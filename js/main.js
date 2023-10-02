@@ -7,39 +7,84 @@ function getAiChoice() {
 
 function playRound(userChoice, aiChoice) {
   userChoice = userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
+  
+  let winner;
 
   switch (userChoice) {
     case "Rock":
       if (aiChoice === "Scissors") {
-        return "AI selected Scissors, you win!";
+        console.log("AI selected Scissors, you win!");
+        winner = "user";
+        return winner;
       } else if (aiChoice === "Paper") {
-        return "AI selected Paper, you lose!";
+        console.log("AI selected Paper, you lose!");
+        winner = "ai";
+        return winner;
       } else if (aiChoice === "Rock") {
-        return "AI selected Rock, it's a draw!";
+        console.log("AI selected Rock, it's a draw!");
+        winner = null;
+        return winner;
       }
       break;
 
     case "Paper":
       if (aiChoice === "Rock") {
-        return "AI selected Rock, you win!";
+        console.log("AI selected Rock, you win!");
+        winner = "user";
+        return winner;
       } else if (aiChoice === "Scissors") {
-        return "AI selected Scissors, you lose!";
+        console.log("AI selected Scissors, you lose!");
+        winner = "ai";
+        return winner;
       } else if (aiChoice === "Paper") {
-        return "AI selected Paper, it's a draw!";
+        console.log("AI selected Paper, it's a draw!");
+        winner = null;
+        return winner;
       }
       break;
 
     case "Scissors":
       if (aiChoice === "Paper") {
-        return "AI selected Paper, you win!";
+        console.log("AI selected Paper, you win!");
+        winner = "user";
+        return winner;
       } else if (aiChoice === "Rock") {
-        return "AI selected Rock, you lose!";
+        console.log("AI selected Rock, you lose!");
+        winner = "ai";
+        return winner;
       } else if (aiChoice === "Scissors") {
-        return "AI selected Scissors, it's a draw!";
+        console.log("AI selected Scissors, it's a draw!");
+        winner = null;
+        return winner;
       }
       break;
     
     default: 
       break;
   } 
+}
+
+function game() {
+  for (let round = 1; round <= 5; round++) {
+    let userGamesWon = 0;
+    let aiGamesWon = 0;
+    let userChoice = prompt("Choose wisely: Rock, Paper or Scissors?");
+    
+    let winner = playRound(userChoice, getAiChoice());
+
+    if (winner === "user") {
+      userGamesWon++;
+      if (userGamesWon == 3) return "user";
+    } else if (winner === "ai") {
+      aiGamesWon++;
+      if (aiGamesWon == 3) return "ai";
+    }
+  }
+}
+
+let gameWinner = game();
+if (gameWinner === "user") {
+  console.log("Congratulations, you won the game!");
+} else if (gameWinner === "ai") {
+  console.log("Ops, you lost the game!")
 }
