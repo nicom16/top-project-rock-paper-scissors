@@ -19,6 +19,10 @@ buttons.forEach((button) => {
     const resultParagraph = document.createElement('p');
     resultParagraph.textContent = "The winner of this round is: " + winner;
     resultSection.appendChild(resultParagraph); 
+ 
+    const currentScoreParagraph = document.createElement('p');
+    currentScoreParagraph.textContent = "Current score: user " + userWins + " - " + aiWins + " ai";
+    resultSection.appendChild(currentScoreParagraph);
   });
 });
 
