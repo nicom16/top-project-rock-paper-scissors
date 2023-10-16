@@ -23,6 +23,17 @@ buttons.forEach((button) => {
     const currentScoreParagraph = document.createElement('p');
     currentScoreParagraph.textContent = "Current score: user " + userWins + " - " + aiWins + " ai";
     resultSection.appendChild(currentScoreParagraph);
+
+    if (userWins == 5 || aiWins == 5) {
+      let gameWinner = (userWins == 5) ? "user" : "ai";
+      
+      const gameWinnerParagraph = document.createElement('p');
+      gameWinnerParagraph.textContent = "The winner of this game is: " + gameWinner + "! Congratulations!";
+      resultSection.appendChild(gameWinnerParagraph);
+
+      userWins = 0;
+      aiWins = 0;
+    }
   });
 });
 
