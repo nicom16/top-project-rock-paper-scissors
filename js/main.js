@@ -1,3 +1,28 @@
+// Main
+
+let userWins = 0;
+let aiWins = 0;
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const winner = playRound(e.currentTarget.textContent, getAiChoice());
+
+    if (winner === "user") {
+      userWins++;
+    } else if (winner === "ai") {
+      aiWins++;
+    }
+   
+    const resultSection = document.querySelector('#result');
+    
+    const resultParagraph = document.createElement('p');
+    resultParagraph.textContent = "The winner of this round is: " + winner;
+    resultSection.appendChild(resultParagraph); 
+  });
+});
+
+// Functions
 function getAiChoice() {
   let choices = ["Rock", "Paper", "Scissors"];
   let aiChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -9,7 +34,6 @@ function playRound(userChoice, aiChoice) {
   userChoice = userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
   
   let winner;
-
   switch (userChoice) {
     case "Rock":
       if (aiChoice === "Scissors") {
@@ -64,7 +88,8 @@ function playRound(userChoice, aiChoice) {
   } 
 }
 
-function game() {
+// Old stuff 
+/*function game() {
   for (let round = 1; round <= 5; round++) {
     let userGamesWon = 0;
     let aiGamesWon = 0;
@@ -87,4 +112,4 @@ if (gameWinner === "user") {
   console.log("Congratulations, you won the game!");
 } else if (gameWinner === "ai") {
   console.log("Ops, you lost the game!")
-}
+}*/
